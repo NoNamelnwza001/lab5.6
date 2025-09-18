@@ -3,6 +3,7 @@ package com.example.lab06;
 public class TextNote extends Note{
     //Attribute
     private  String textContent;
+   // public TextNote(string titile, String creadData, String)
 
     //getter method
     public String getTextContent(){

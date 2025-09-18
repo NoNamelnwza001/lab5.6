@@ -14,6 +14,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Executors;
+
 public class BrowesNoteActivity extends AppCompatActivity {
 
     Button addSearch ;
@@ -50,8 +54,29 @@ public class BrowesNoteActivity extends AppCompatActivity {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
+                    //load data from
+
 
                     //2.2load data form DB
+                    /* Executors.newSingleThreadExecutor().execute() -> {
+                        List<NoteEntity> entities = AppDatabase.getInstance(this).noteDao().getAll();
+                        List<Note> notes = new ArrayList<>();
+                        for (NoteMapper.fromEntity(e));
+                    }
+                    //display on UI thread
+                    runOnUiThread(())->{
+                        StringBuilder sd = new StringBuilder();
+                        for (Note n : notes) {
+                            sb.append(n.display()).append("n");*/
+//                       }
+
+
+
+
+
+//                    }
+
+
 
                     //2.3back to main thread
                     runOnUiThread(() ->{

@@ -1,5 +1,6 @@
 package com.example.lab06;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -24,6 +25,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import java.util.Date;
+import java.util.concurrent.Executors;
 
 public class AddNoteActivity extends AppCompatActivity {
     Button addBack;
@@ -76,7 +78,7 @@ public class AddNoteActivity extends AppCompatActivity {
                 String strOfTitle = title.getText().toString();
                 String strOfContent = textContent.getText().toString();
 
-                String strOfDate = new Date().toString();
+                String strOfDate = new String();
                 String strOfName = name.getText().toString();
                 String strOfId = id.getText().toString();
 
@@ -105,11 +107,20 @@ public class AddNoteActivity extends AppCompatActivity {
                 String strOfDate = new Date().toString();
 
                 ChecklistNote note1 = new ChecklistNote();
-                note1.setTitle(strOfTitle);
-
-                note1.createdDate = strOfDate;
+                note1.setTitle(strOfTitle);note1.createdDate = strOfDate;
 
                 display1.setText(note1.getSummary());
+
+                // OOP -> entity
+                NoteEntity entity = NoteMapper.toEntity(note1);
+                //add data to db
+                Context context = view.getContext();
+                Executors.newSingleThreadExecutor().execute(()-> {
+                    AppDatabase.getInstance(context).noteDao().insert(entity);
+
+                });
+
+
             }
         });
     }

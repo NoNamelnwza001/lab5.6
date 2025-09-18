@@ -1,6 +1,6 @@
 package com.example.lab06;
 
-    public abstract class Note {
+public abstract class Note {
         //Attribute
         public String title;
         public String createdDate;
